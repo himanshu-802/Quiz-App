@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="/css/mcq.css">
+</head>
+
+<body>
+    <script>
+        var answers = [];
+
+        var no_of_qset = "<%= topic.mcqs.length %>";
+
+        for (var i = 0; i < no_of_qset; i++) {
+            answers[i] = 0;
+        }
+    </script>
+
+    <input type="hidden" id="myid" value="<%= topic._id %>">
+    <div class="container-fluid bg-info">
+        <h1>MCQ page</h1>
+        <h3>Total marks allocated :
+            <%= topic.marks %>
+        </h3>
+        <div>
+            <% var counter=0; %>
+                <p>
+                    <% topic.mcqs.forEach(function(mcq) { %>
+                </p>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3><span class="label label-warning" id="qid"></span>
+                                <%= mcq.question %>
+                            </h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-xs-3 col-xs-offset-5">
+                                <div id="loadbar" style="display: none;">
+                                    <div class="blockG" id="rotateG_01"></div>
+                                    <div class="blockG" id="rotateG_02"></div>
+                                    <div class="blockG" id="rotateG_03"></div>
+                                    <div class="blockG" id="rotateG_04"></div>
+                                    <div class="blockG" id="rotateG_05"></div>
+                                    <div class="blockG" id="rotateG_06"></div>
+                                    <div class="blockG" id="rotateG_07"></div>
+                                    <div class="blockG" id="rotateG_08"></div>
+                                </div>
+                            </div>
+                            <div class="quiz" id="quiz" data-toggle="buttons">
+                                <label id="b1<%= counter %>" class="element-animation1 btn btn-lg btn-primary btn-block" onclick="setColor('1', '<%= counter %>')"><span class="btn-label"><i
+                                            class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio"
+                                        name="q<%= counter %>" value="1"><%= mcq.opt1 %></label>
+                                <label id="b2<%= counter %>" class="element-animation2 btn btn-lg btn-primary btn-block" onclick="setColor('2', '<%= counter %>')"><span class="btn-label"><i
+                                            class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio"
+                                        name="q<%= counter %>" value="2"><%= mcq.opt2 %> </label>
+                                <label id="b3<%= counter %>" class="element-animation3 btn btn-lg btn-primary btn-block" onclick="setColor('3', '<%= counter %>')"><span class="btn-label"><i
+                                            class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio"
+                                        name="q<%= counter %>" value="3"><%= mcq.opt3 %> </label>
+                                <label id="b4<%= counter %>" class="element-animation4 btn btn-lg btn-primary btn-block" onclick="setColor('4', '<%= counter %>')"><span class="btn-label"><i
+                                            class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio"
+                                        name="q<%= counter %>" value="4"><%= mcq.opt4 %> </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% counter=counter+1; %>
+                    <% }) %>
+                        <div style='text-align: center'>
+                            <button class="btn btn-success" type="submit" onclick="evaluateQuiz()">Submit</button>
+                        </div>
+        </div>
+    </div>
+
+    <script type='text/javascript' src='/js/main.js'></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+
+</html>
