@@ -15,6 +15,12 @@ Steps to run locally<br>
 3. run command in terminal " npm i "
 4. Open the brower with URL "localhost:8000"
 
+## Feature
+
+1. Support Login/Signup Authentication with passport.js
+2. Student from particular branch and year will get Quiz, by their respected teacher.
+3. Only 1 quiz set for particular subject
+
 ## TODO
 
 - [ ] EDIT functionally Error
