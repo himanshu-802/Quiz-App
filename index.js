@@ -15,11 +15,15 @@ var passportLocalMongoose = require('passport-local-mongoose');
 const { serialize } = require('v8');
 const flash= require('connect-flash');
 const methodOverride = require('method-override');
+const dotenv=require('dotenv');
+dotenv.config({path : './config.env'});
 
-mongoose.connect('mongodb://localhost:27017/mcq-test', {
+mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
+}).then(function (conn){
+    console.log('Database connected successfully');
 });
 
 
